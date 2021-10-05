@@ -2,17 +2,16 @@ package baseball.service;
 
 public class GameProcess {
 
-    private int cntStrike = 0;
-    private int cntBall = 0;
-
     public String process(String inputNumber, String answer){
+        int cntStrike = 0;
+        int cntBall = 0;
 
         for(int idx = 0; idx < inputNumber.length(); idx++){
             cntStrike += isStrike(idx, String.valueOf(inputNumber.charAt(idx)), answer);
             cntBall += isBall(idx, String.valueOf(inputNumber.charAt(idx)), answer);
         }
 
-        return resultMessage();
+        return resultMessage(cntStrike, cntBall);
     }
 
     public int isStrike(int index, String digitNumber, String answer){
@@ -27,7 +26,7 @@ public class GameProcess {
         }
     }
 
-    public String resultMessage(){
+    public String resultMessage(int cntStrike, int cntBall){
         if(cntStrike != 0 && cntBall == 0) return cntStrike + "스트라이크";
         if(cntStrike == 0 && cntBall != 0) return cntBall + "볼";
         if(cntStrike != 0 && cntBall != 0) return cntStrike + "스트라이크 " + cntBall + "볼";
